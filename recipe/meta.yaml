@@ -1,18 +1,18 @@
 {% set name = "ringspy" %}
-{% set version = "0.4.2" %}
+{% set version = "1.0.1" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: e9e486c0c812848e20e17127c019e66d63160bfa7b519f38e9ccd71e54e152a6
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 9f3de072d614d51508f128219a539b388229b58c28a8cb23e6677de7ffb9b59f
 
 build:
   number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -28,7 +28,7 @@ requirements:
     - matplotlib-base >=3.2.2
     - hexalattice
     - vtk
-    
+
 test:
   imports:
     - ringspy
@@ -37,13 +37,13 @@ test:
 
   commands:
     - pip check
-    
+
 about:
   home: https://github.com/kingyin3613/ringspy
-  license: "GPL-3.0-or-later"
+  license: GPL-3.0-or-later
   license_family: GPL3
   license_file: LICENSE
-  summary: "A geometric generation tool for prismatic cellular solids"
+  summary: A geometric generation tool for prismatic cellular solids
   doc_url: https://github.com/kingyin3613/ringspy/wiki
   dev_url: https://github.com/kingyin3613/ringspy
 
