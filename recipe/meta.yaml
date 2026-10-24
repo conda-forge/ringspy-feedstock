@@ -1,5 +1,5 @@
 {% set name = "ringspy" %}
-{% set version = "1.0.2" %}
+{% set version = "1.2.0" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,7 +7,7 @@ package:
 
 source:
   url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: 3acfa4f50507cacafa79e49a37907fe5c7b9246cfb76030de257807a50374a4e
+  sha256: d1d797ff2e2681d705157a7c8e0d44380c8b2549bcbcf9ef1c3e26268084f400
 
 build:
   number: 0
@@ -28,7 +28,7 @@ requirements:
     - matplotlib-base >=3.2.2
     - hexalattice ==1.2.1
     - vtk
-    
+
 test:
   imports:
     - ringspy
@@ -37,7 +37,7 @@ test:
 
   commands:
     - pip check
-    
+
 about:
   home: https://github.com/kingyin3613/ringspy
   license: "GPL-3.0-or-later"
