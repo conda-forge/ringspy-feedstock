@@ -1,5 +1,6 @@
 {% set name = "ringspy" %}
-{% set version = "1.0.2" %}
+{% set version = "1.2.0" %}
+{% set python_min = "3.10" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,44 +8,47 @@ package:
 
 source:
   url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: 3acfa4f50507cacafa79e49a37907fe5c7b9246cfb76030de257807a50374a4e
+  sha256: d1d797ff2e2681d705157a7c8e0d44380c8b2549bcbcf9ef1c3e26268084f400
 
 build:
   number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  entry_points:
+    - ringspy = ringspy.cli:main
 
 requirements:
   host:
+    - python {{ python_min }}
     - pip
-    - python >=3.7
+    - setuptools >=77
   run:
-    - python >=3.7
-    - setuptools
-    - wheel
-    - requests >=2
+    - python >={{ python_min }}
     - numpy
     - scipy
     - matplotlib-base >=3.2.2
-    - hexalattice ==1.2.1
-    - vtk
-    
+    - tomli >=1.1  # used on Python 3.10 only
+    # optional on PyPI (extras [vtk] and [hex]), included here as in earlier conda packages
+    - vtk-base
+    - hexalattice >=1.2.1
+
 test:
   imports:
     - ringspy
   requires:
     - pip
-
+    - python {{ python_min }}
   commands:
     - pip check
-    
+    - ringspy --help
+
 about:
   home: https://github.com/kingyin3613/ringspy
-  license: "GPL-3.0-or-later"
+  license: GPL-3.0-only
   license_family: GPL3
   license_file: LICENSE
   summary: "A geometric generation tool for prismatic cellular solids"
-  doc_url: https://github.com/kingyin3613/ringspy/wiki
+  doc_url: https://github.com/kingyin3613/ringspy
   dev_url: https://github.com/kingyin3613/ringspy
 
 extra:
