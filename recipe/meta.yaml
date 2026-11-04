@@ -1,5 +1,5 @@
 {% set name = "ringspy" %}
-{% set version = "1.3.0" %}
+{% set version = "2.1.0" %}
 {% set python_min = "3.10" %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: a607dadb20a788534cea18c8a217e78fd9b764ba090728f4d3b82f48d723d142
+  sha256: 04faaefecae0f5e1305313cd38ee65a15a911ade40202baa6f900b4c10d45366
 
 build:
   number: 0
